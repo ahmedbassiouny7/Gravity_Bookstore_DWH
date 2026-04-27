@@ -1,6 +1,12 @@
 # 📚 Gravity Bookstore — Data Warehouse Project
 
-> An end-to-end Data Warehouse solution built on SQL Server, SSIS, SSAS, and Power BI — implementing a full Medallion-style ETL pipeline with a dimensional model, incremental loads, SCD handling, and an analytical cube.
+![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-CC2927?logo=microsoftsqlserver&logoColor=white)
+![SSIS](https://img.shields.io/badge/SSIS-Visual%20Studio%202022-5C2D91?logo=visualstudio&logoColor=white)
+![SSAS](https://img.shields.io/badge/SSAS-Multidimensional-0078D4?logo=microsoft&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?logo=powerbi&logoColor=black)
+![Status](https://img.shields.io/badge/Status-Completed-27AE60)
+
+> An end-to-end Data Warehouse solution built on SQL Server, SSIS, SSAS, and Power BI — implementing a full ETL pipeline with a dimensional model, incremental loads, SCD handling, and an analytical cube.
 
 ---
 
@@ -16,6 +22,7 @@
 - [Data Dictionary](#-data-dictionary)
 - [SSAS Cube](#-ssas-cube)
 - [Power BI Dashboards](#-power-bi-dashboards)
+- [Key Findings](#-key-findings)
 - [Key Design Decisions](#-key-design-decisions)
 - [Author](#-author)
 
@@ -38,10 +45,10 @@
 |---|---|
 | Source System | `gravity_books` — SQL Server OLTP database |
 | Staging Layer | `GravityBookstore_Staging` — full load, truncate + insert |
-| Data Warehouse | `GravityBookstore_DWH` — star schema with SCD support |
+| Data Warehouse | `GravityBookstore_DWH` — snowflake schema with SCD support |
 | ETL Tool | SSIS (SQL Server Integration Services) |
 | Analytical Layer | SSAS Multidimensional Cube |
-| Reporting Layer | Power BI Desktop |
+| Reporting Layer | Power BI Desktop (live connection to SSAS) |
 
 ---
 
@@ -78,7 +85,7 @@
                       ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                    DATA WAREHOUSE LAYER                      │
-│               GravityBookstore_DWH                          │
+│               GravityBookstore_DWH                           │
 │   Dim Tables │ Fact Tables │ Bridge Tables                   │
 └─────────────────────┬───────────────────────────────────────┘
                       │  SSAS Multidimensional Cube
@@ -151,36 +158,46 @@
 ## 📁 Repository Structure
 
 ```
-gravity-bookstore-dwh/
+retail-analytics-platform/
 │
 ├── 📁 01_Database/
-│   ├── 01_OLTP_Schema.sql          # Source database DDL (reference only)
-│   ├── 02_Staging_DDL.sql          # GravityBookstore_Staging DDL
-│   └── 03_DWH_DDL.sql              # GravityBookstore_DWH DDL
+│   ├── 01_OLTP_Schema.sql              # Source database DDL (reference only)
+│   ├── 02_Staging_DDL.sql              # GravityBookstore_Staging DDL
+│   └── 03_DWH_DDL.sql                  # GravityBookstore_DWH DDL
 │
 ├── 📁 02_SSIS/
-│   ├── 01_Staging_Load.dtsx        # Full staging load package
-│   ├── 02_Dim_Load.dtsx            # Incremental dimension load
-│   ├── 03_Fact_Load.dtsx           # Fact table load
-│   └── 00_Master_Package.dtsx      # Master orchestration package
+│   ├── 00_Master_Package.dtsx          # Master orchestration package
+│   ├── 01_Staging_Load.dtsx            # Full staging load package
+│   ├── 02_Dim_Load.dtsx                # Incremental dimension load
+│   └── 03_Fact_Load.dtsx               # Fact table load
 │
 ├── 📁 03_SSAS/
-│   └── GravityBookstore_SSAS/      # SSAS Multidimensional project
+│   ├── GravityBookstore_SSAS.dwproj    # Main VS project file
+│   ├── GravityBookstore_Cube.cube      # Cube definition (measures, KPIs, MDX)
+│   ├── GravityBookstore_DSV.dsv        # Data Source View
+│   ├── GravityBookstore_DWH.ds         # Data source connection
+│   ├── GravityBookstore_Cube.database  # Database definition
+│   ├── GravityBookstore_Cube.partitions# Partition definitions
+│   └── Dim *.dim (×6)                  # All dimension definitions
 │
 ├── 📁 04_PowerBI/
-│   └── GravityBookstore.pbix       # Power BI report file
+│   ├── GravityBookstore.pbix           # Power BI report file
+│   └── GravityBookstore_Theme.json     # Custom theme file
 │
-├── 📁 05_Documentation/
-│   ├── Architecture_Diagram.png    # Full architecture diagram
-│   ├── Dimensional_Model_ERD.png   # Star schema ERD
-│   └── Data_Dictionary.md          # Full data dictionary
+├── 📁 05_Dashboard/
+│   └── GravityBookstore_Dashboard.html # Interactive HTML dashboard
 │
-├── 📁 06_Screenshots/
-│   ├── SSIS_Staging_Load.png
-│   ├── SSIS_Dim_Load.png
-│   ├── SSIS_Fact_Load.png
-│   ├── SSAS_Cube_Browser.png
-│   └── PowerBI_Dashboard.png
+├── 📁 06_Documentation/
+│   ├── Architecture_Diagram.png        # Full architecture diagram
+│   ├── Dimensional_Model_ERD.png       # snowflake schema ERD
+│   └── Data_Dictionary.md              # Full data dictionary
+│
+├── 📁 07_Screenshots/
+│   ├── 01_SSIS_Staging_Load.png
+│   ├── 02_SSIS_Dim_Load.png
+│   ├── 03_SSIS_Fact_Load.png
+│   ├── 04_SSAS_Cube_Browser.png
+│   └── 05_PowerBI_Dashboard.png
 │
 └── README.md
 ```
@@ -234,11 +251,11 @@ Execute in this order (or use the Master Package):
 
 ### Step 5 — Deploy SSAS Cube
 
-1. Open `03_SSAS/GravityBookstore_SSAS.sln` in Visual Studio
+1. Open `03_SSAS/GravityBookstore_SSAS.dwproj` in Visual Studio
 2. Update Data Source connection to your SQL Server
-3. Set Deployment Server to your SSAS Multidimensional instance
-4. Right-click project → Deploy
-5. Right-click cube → Process
+3. Set Deployment Server to your SSAS Multidimensional instance (`localhost\SSAS_MD`)
+4. Right-click project → **Deploy**
+5. Right-click cube → **Process**
 
 ### Step 6 — Open Power BI Report
 
@@ -251,9 +268,9 @@ Execute in this order (or use the Master Package):
 ## 🔄 ETL Pipeline
 
 ### Package 01 — Staging Load
+
 - **Strategy:** Full Load (Truncate + Insert)
-- **Method:** Single Execute SQL Task with multi-statement T-SQL
-- **Row counts after load:**
+- **Method:** OLE DB Source → OLE DB Destination per table
 
 | Table | Rows |
 |---|---|
@@ -267,12 +284,14 @@ Execute in this order (or use the Master Package):
 | stg_order_history | 22,344 |
 
 ### Package 02 — Dim Load
+
 - **Strategy:** Incremental Load
-- **SCD1 pattern:** OLE DB Source → Lookup → Conditional Split → INSERT new / UPDATE changed
-- **SCD2 pattern (Dim_Customer):** SSIS SCD Wizard — expires old rows, inserts new versions
+- **SCD Type 1 pattern:** OLE DB Source → Lookup → Conditional Split → INSERT new / UPDATE changed
+- **SCD Type 2 pattern (Dim_Customer):** SSIS SCD Wizard — expires old rows, inserts new versions
 - **Bridges:** Execute SQL Tasks using T-SQL MERGE-style logic
 
 ### Package 03 — Fact Load
+
 - **Strategy:** Incremental Load
 - **Pattern:** OLE DB Source → chain of Lookups (one per dimension) → OLE DB Destination
 - **SK resolution:** Each Lookup replaces NK with SK from the corresponding dimension
@@ -324,37 +343,65 @@ Execute in this order (or use the Master Package):
 
 ## 🧊 SSAS Cube
 
-### Cube: GravityBookstore_Cube
+**Cube:** `GravityBookstore_Cube` | **Instance:** `localhost\SSAS_MD`
 
 | Measure Group | Measures |
 |---|---|
 | Fact Book Sales | Sale Price (Sum), Shipping Cost (Sum), Quantity (Sum), Line Total (Sum), Count |
 | Fact Order History | Days To Status (Avg), Count |
 
-### Dimensions
+### Calculated MDX Members
 
-| Dimension | Type | Key Attribute |
-|---|---|---|
-| Dim Date | Time | Date SK |
-| Dim Customer | Regular | Customer SK |
-| Dim Book | Regular | Book SK |
-| Dim Author | Regular | Author SK |
-| Dim Address | Regular | Address SK |
-| Dim Shipping Method | Regular | Shipping Method SK |
-| Dim Order Status | Regular | Order Status SK |
+```mdx
+[Total Revenue]       = [Measures].[Sale Price]
+[Total Orders]        = [Measures].[Fact Book Sales Count]
+[Total Shipping Cost] = [Measures].[Shipping Cost]
+[Avg Order Value]     = IIF([Measures].[Total Orders]=0, NULL,
+                          [Measures].[Total Revenue]/[Measures].[Total Orders])
+[Revenue Growth %]    = IIF(PARALLELPERIOD(...)=0, NULL,
+                          ([Total Revenue] - LY Revenue) / LY Revenue)
+```
 
 ---
 
 ## 📊 Power BI Dashboards
 
-The report consists of 4 pages connected live to the SSAS cube:
+Connected **live** to the SSAS cube (`localhost\SSAS_MD`). The report has 4 pages:
 
 | Page | Key Visuals |
 |---|---|
-| Sales Overview | Revenue KPIs, sales trend, top books, sales by shipping method |
-| Customer Analysis | Top customers, customers by country, order distribution |
-| Order Status | Order funnel, avg days to delivery, status trends |
-| Book Performance | Top books/authors, sales by language, top publishers |
+| Sales Overview | Revenue KPIs, monthly sales trend, top 5 books, sales by shipping method, top 5 countries |
+| Customer Analysis | Top 10 customers, revenue by country, revenue by language, order volume by year |
+| Order Status | Order funnel, avg days by shipping method, orders by status |
+| Book Performance | Top 10 books, top 5 authors, revenue by language, top publishers |
+
+### Real Data Numbers
+
+| Metric | Value |
+|---|---|
+| Total Revenue | $154,326.69 |
+| Total Orders | 15,400 |
+| Avg Order Value | $10.02 |
+| Total Shipping Cost | **$172,252.40** ⚠️ |
+| Top Country | China ($28,013) |
+| Top Book | The Brothers Karamazov ($193.18) |
+| Top Author | Stephen King (64 books) |
+| Top Publisher | Vintage ($4,705) |
+| Top Language | English ($124,301 — 80% of revenue) |
+
+---
+
+## 🔍 Key Findings
+
+> **⚠️ Shipping Cost Exceeds Revenue**
+>
+> Total shipping cost ($172,252) exceeds total revenue ($154,327) by **$17,925** — meaning the bookstore is losing money on every shipment on average. This is the most critical business insight from the analysis and suggests an urgent need to revise the shipping pricing model or renegotiate carrier contracts.
+
+Other findings:
+- **80% of revenue** comes from English-language books, with Spanish and French a distant second and third
+- **China, Indonesia, and Russia** are the top 3 markets by revenue, together accounting for ~37% of total sales
+- Only **46.4%** of orders reach "Delivered" status — the rest remain in earlier stages or are cancelled/returned
+- **Priority shipping** averages just 1.1 days to status vs **12.4 days** for International
 
 ---
 
@@ -372,17 +419,20 @@ Books can have multiple authors (many-to-many). The `weighting_factor` in Bridge
 **Why Staging Layer?**
 The staging layer protects the OLTP system from heavy ETL queries, provides a recovery point if the load fails midway, and decouples source system changes from DWH logic.
 
-**Why time_SK is nullable in Fact Tables?**
+**Why is `time_SK` nullable in Fact Tables?**
 The source system only stores order dates — no time component. Storing `00:00:00` would be misleading, so `time_SK` is nullable rather than forced to a fake default.
+
+**Why `publication_year` and `full_name` are computed columns?**
+Both are derived from other columns in the same table. Using computed columns ensures they are always consistent with the source data and eliminates the risk of a mismatch during ETL loads — they are never mapped in SSIS.
 
 ---
 
 ## 👤 Author
 
-**Ahmed Bassiouny**
-Data Engineering Student
+**Ahmed Bassiouny**  
+Data Engineer
 
-[![GitHub](https://img.shields.io/badge/GitHub-7absy-black?logo=github)](https://github.com/7absy)
+[![GitHub](https://img.shields.io/badge/GitHub-7absy-black?logo=github)](https://github.com/ahmedbassiouny7)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://www.linkedin.com/in/ahmed-bassiouny-8966a3184/)
 
 ---
