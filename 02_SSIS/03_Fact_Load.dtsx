@@ -1,0 +1,3163 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/20/2026 12:55:48 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="A-BSY"
+  DTS:CreatorName="A-BSY\A-bsy"
+  DTS:DTSID="{8F4C05E8-ECDB-434F-AEFF-694799D19B81}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="03_Fact_Load"
+  DTS:PackageType="5"
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{270CEFDD-4C83-4305-9232-F38A433E5F17}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Load_Fact_BookSales"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9BE36E4E-D1B3-4D3D-AAD6-7C23BA0CB3EF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Load_Fact_BookSales"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DER_Cast_Dates_History"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Inputs[Derived Column Input].Columns[order_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="order_date"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[order_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Output].Columns[order_date_str]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Output].Columns[order_date_str]"
+                      name="order_date_str"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,10)(DT_DBDATE)#{Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[order_date]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,10)(DT_DBDATE)order_date</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_Fact_BookSales"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Fact_BookSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[line_id]"
+                      cachedDataType="i4"
+                      cachedName="line_id"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[line_id]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[line_id]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[sale_price]"
+                      cachedDataType="numeric"
+                      cachedName="sale_price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[sale_price]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[sale_price]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[shipping_cost]"
+                      cachedDataType="numeric"
+                      cachedName="shipping_cost"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[shipping_cost]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[shipping_cost]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[LKP_customer_SK]"
+                      cachedDataType="i4"
+                      cachedName="LKP_customer_SK"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[customer_SK]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Match Output].Columns[LKP_customer_SK]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[LKP_book_SK]"
+                      cachedDataType="i4"
+                      cachedName="LKP_book_SK"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[book_SK]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Match Output].Columns[LKP_book_SK]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[LKP_shipping_method_SK]"
+                      cachedDataType="i4"
+                      cachedName="LKP_shipping_method_SK"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[shipping_method_SK]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Match Output].Columns[LKP_shipping_method_SK]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[LKP_address_SK]"
+                      cachedDataType="i4"
+                      cachedName="LKP_address_SK"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[address_SK]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Match Output].Columns[LKP_address_SK]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[order_id]"
+                      cachedDataType="i4"
+                      cachedName="order_id"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].Columns[LKP_date_SK]"
+                      cachedDataType="i4"
+                      cachedName="LKP_date_SK"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[date_SK]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Match Output].Columns[LKP_date_SK]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[sale_SK]"
+                      dataType="i4"
+                      name="sale_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[date_SK]"
+                      dataType="i4"
+                      name="date_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[time_SK]"
+                      dataType="i4"
+                      name="time_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[customer_SK]"
+                      dataType="i4"
+                      name="customer_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[book_SK]"
+                      dataType="i4"
+                      name="book_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[shipping_method_SK]"
+                      dataType="i4"
+                      name="shipping_method_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[address_SK]"
+                      dataType="i4"
+                      name="address_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                      dataType="i4"
+                      name="order_number" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[line_id]"
+                      dataType="i4"
+                      name="line_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[sale_price]"
+                      dataType="numeric"
+                      name="sale_price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[quantity]"
+                      dataType="i4"
+                      name="quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[line_total]"
+                      dataType="numeric"
+                      name="line_total"
+                      precision="21"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input].ExternalColumns[shipping_cost]"
+                      dataType="numeric"
+                      name="shipping_cost"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Get_address_SK"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT address_NK, address_SK 
+FROM Dim_Address</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT address_NK, address_SK 
+FROM Dim_Address) [refTable]
+where [refTable].[address_NK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="address_NK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="address_SK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[dest_address_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Inputs[Lookup Input].Columns[dest_address_id]"
+                      cachedDataType="i4"
+                      cachedName="dest_address_id"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[dest_address_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">address_NK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Match Output].Columns[LKP_address_SK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Match Output].Columns[LKP_address_SK]"
+                      name="LKP_address_SK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">address_SK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Get_book_SK"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT book_NK, book_SK 
+FROM Dim_Book</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT book_NK, book_SK 
+FROM Dim_Book) [refTable]
+where [refTable].[book_NK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="book_NK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="book_SK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[book_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Inputs[Lookup Input].Columns[book_id]"
+                      cachedDataType="i4"
+                      cachedName="book_id"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[book_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">book_NK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Match Output].Columns[LKP_book_SK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Match Output].Columns[LKP_book_SK]"
+                      name="LKP_book_SK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">book_SK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Get_customer_SK"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT customer_NK, customer_SK 
+FROM Dim_Customer
+WHERE is_current = 1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT customer_NK, customer_SK 
+FROM Dim_Customer
+WHERE is_current = 1) [refTable]
+where [refTable].[customer_NK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="customer_NK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="customer_SK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[customer_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Inputs[Lookup Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">customer_NK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Match Output].Columns[LKP_customer_SK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Match Output].Columns[LKP_customer_SK]"
+                      name="LKP_customer_SK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">customer_SK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Get_date_SK"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT date_SK, full_date
+ FROM Dim_Date</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT date_SK, full_date
+ FROM Dim_Date) [refTable]
+where [refTable].[full_date] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="date_SK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="full_date" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Output].Columns[order_date_str]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Inputs[Lookup Input].Columns[order_date_str]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="order_date_str"
+                      lineageId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Output].Columns[order_date_str]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">full_date</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Match Output].Columns[LKP_date_SK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Match Output].Columns[LKP_date_SK]"
+                      name="LKP_date_SK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">date_SK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Get_shipping_method_SK"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT method_NK, shipping_method_SK 
+FROM Dim_ShippingMethod</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT method_NK, shipping_method_SK 
+FROM Dim_ShippingMethod) [refTable]
+where [refTable].[method_NK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="method_NK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="shipping_method_SK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[shipping_method_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Inputs[Lookup Input].Columns[shipping_method_id]"
+                      cachedDataType="i4"
+                      cachedName="shipping_method_id"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[shipping_method_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">method_NK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Match Output].Columns[LKP_shipping_method_SK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Match Output].Columns[LKP_shipping_method_SK]"
+                      name="LKP_shipping_method_SK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">shipping_method_SK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC_Fact_BookSales"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    ol.line_id,
+    ol.order_id,
+    ol.book_id,
+    ol.price          AS sale_price,
+    co.order_date,
+    co.customer_id,
+    co.shipping_method_id,
+    co.dest_address_id,
+    sm.cost           AS shipping_cost
+FROM stg_order_line ol
+JOIN stg_cust_order      co ON ol.order_id           = co.order_id
+JOIN stg_shipping_method sm ON co.shipping_method_id = sm.method_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Connections[OleDbConnection]"
+                  connectionManagerID="{4BEB09F6-A322-4CD0-AEBE-2FED5EC9BB59}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[line_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[line_id]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[line_id]"
+                      name="line_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[order_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[book_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[book_id]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[book_id]"
+                      name="book_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[sale_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[sale_price]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[sale_price]"
+                      name="sale_price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[order_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[order_date]"
+                      name="order_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[shipping_method_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[shipping_method_id]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[shipping_method_id]"
+                      name="shipping_method_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[dest_address_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[dest_address_id]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[dest_address_id]"
+                      name="dest_address_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[shipping_cost]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[shipping_cost]"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].Columns[shipping_cost]"
+                      name="shipping_cost"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[line_id]"
+                      dataType="i4"
+                      name="line_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      dataType="i4"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[book_id]"
+                      dataType="i4"
+                      name="book_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[sale_price]"
+                      dataType="numeric"
+                      name="sale_price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      dataType="dbTimeStamp"
+                      name="order_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[shipping_method_id]"
+                      dataType="i4"
+                      name="shipping_method_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[dest_address_id]"
+                      dataType="i4"
+                      name="dest_address_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output].ExternalColumns[shipping_cost]"
+                      dataType="numeric"
+                      name="shipping_cost"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[line_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[line_id]"
+                      name="line_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[book_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[book_id]"
+                      name="book_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[sale_price]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[sale_price]"
+                      name="sale_price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      name="order_date" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[shipping_method_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[shipping_method_id]"
+                      name="shipping_method_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[dest_address_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[dest_address_id]"
+                      name="dest_address_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[shipping_cost]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[shipping_cost]"
+                      name="shipping_cost"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Load_Fact_BookSales.Paths[Derived Column Output]"
+              endId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output]"
+              endId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output1]"
+              endId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output2]"
+              endId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output3]"
+              endId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output4]"
+              endId="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_BookSales.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Load_Fact_OrderHistory"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B88D6179-EC53-4CBA-9233-DB3F086C4E76}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Load_Fact_OrderHistory"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DER_Cast_Dates_History"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Inputs[Derived Column Input].Columns[status_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="status_date"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[status_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Output].Columns[status_date_str]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Output].Columns[status_date_str]"
+                      name="status_date_str"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,10)(DT_DBDATE)#{Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[status_date]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,10)(DT_DBDATE)status_date</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DEST_Fact_OrderHistory"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Fact_OrderHistory]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].Columns[days_to_status]"
+                      cachedDataType="i4"
+                      cachedName="days_to_status"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[days_to_status]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[days_to_status]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].Columns[LKP_order_status_SK]"
+                      cachedDataType="i4"
+                      cachedName="LKP_order_status_SK"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[order_status_SK]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Match Output].Columns[LKP_order_status_SK]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].Columns[order_id]"
+                      cachedDataType="i4"
+                      cachedName="order_id"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].Columns[LKP_customer_SK]"
+                      cachedDataType="i4"
+                      cachedName="LKP_customer_SK"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[customer_SK]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Match Output].Columns[LKP_customer_SK]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].Columns[LKP_date_SK]"
+                      cachedDataType="i4"
+                      cachedName="LKP_date_SK"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[status_date_SK]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Match Output].Columns[LKP_date_SK]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[history_SK]"
+                      dataType="i4"
+                      name="history_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[status_date_SK]"
+                      dataType="i4"
+                      name="status_date_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[status_time_SK]"
+                      dataType="i4"
+                      name="status_time_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[customer_SK]"
+                      dataType="i4"
+                      name="customer_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[order_status_SK]"
+                      dataType="i4"
+                      name="order_status_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[order_number]"
+                      dataType="i4"
+                      name="order_number" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input].ExternalColumns[days_to_status]"
+                      dataType="i4"
+                      name="days_to_status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Get_customer_SK"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT customer_NK, customer_SK 
+FROM Dim_Customer
+WHERE is_current = 1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT customer_NK, customer_SK 
+FROM Dim_Customer
+WHERE is_current = 1) [refTable]
+where [refTable].[customer_NK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="customer_NK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="customer_SK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[customer_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Inputs[Lookup Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">customer_NK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Match Output].Columns[LKP_customer_SK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Match Output].Columns[LKP_customer_SK]"
+                      name="LKP_customer_SK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">customer_SK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Get_order_status_SK"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT status_NK, order_status_SK FROM Dim_OrderStatus</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT status_NK, order_status_SK FROM Dim_OrderStatus) [refTable]
+where [refTable].[status_NK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="status_NK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="order_status_SK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[status_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Inputs[Lookup Input].Columns[status_id]"
+                      cachedDataType="i4"
+                      cachedName="status_id"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[status_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">status_NK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Match Output].Columns[LKP_order_status_SK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Match Output].Columns[LKP_order_status_SK]"
+                      name="LKP_order_status_SK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">order_status_SK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Get_status_date_SK"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT date_SK, full_date FROM Dim_Date</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT date_SK, full_date FROM Dim_Date) [refTable]
+where [refTable].[full_date] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="date_SK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="full_date" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Output].Columns[status_date_str]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Connections[OleDbConnection]"
+                  connectionManagerID="{1C56C7A7-89C8-46DB-AA4A-0CEBCB454B6C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Inputs[Lookup Input].Columns[status_date_str]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="status_date_str"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Output].Columns[status_date_str]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">full_date</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Match Output].Columns[LKP_date_SK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Match Output].Columns[LKP_date_SK]"
+                      name="LKP_date_SK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">date_SK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC_Fact_OrderHistory"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    oh.history_id,
+    oh.order_id,
+    oh.status_id,
+    oh.status_date,
+    co.customer_id,
+    DATEDIFF(DAY, co.order_date, oh.status_date) AS days_to_status
+FROM stg_order_history oh
+JOIN stg_cust_order co ON oh.order_id = co.order_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Connections[OleDbConnection]"
+                  connectionManagerID="{4BEB09F6-A322-4CD0-AEBE-2FED5EC9BB59}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBookstore_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[history_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[history_id]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[history_id]"
+                      name="history_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[order_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[status_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[status_id]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[status_id]"
+                      name="status_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[status_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[status_date]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[status_date]"
+                      name="status_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[days_to_status]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[days_to_status]"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].Columns[days_to_status]"
+                      name="days_to_status"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[history_id]"
+                      dataType="i4"
+                      name="history_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      dataType="i4"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[status_id]"
+                      dataType="i4"
+                      name="status_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[status_date]"
+                      dataType="dbTimeStamp"
+                      name="status_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output].ExternalColumns[days_to_status]"
+                      dataType="i4"
+                      name="days_to_status" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[history_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[history_id]"
+                      name="history_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[status_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[status_id]"
+                      name="status_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[status_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[status_date]"
+                      name="status_date" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[days_to_status]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[days_to_status]"
+                      name="days_to_status" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Load_Fact_OrderHistory.Paths[Derived Column Output]"
+              endId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_OrderHistory.Paths[Lookup Match Output]"
+              endId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_OrderHistory.Paths[Lookup Match Output1]"
+              endId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_OrderHistory.Paths[Lookup Match Output2]"
+              endId="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_OrderHistory.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A45F456F-6E4C-46ED-B2F6-313DDB1E7877}"
+      DTS:From="Package\DFT_Load_Fact_BookSales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_Load_Fact_OrderHistory" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="205,42"
+          Id="Package\DFT_Load_Fact_BookSales"
+          TopLeft="110,14.3333333333333" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\DFT_Load_Fact_OrderHistory"
+          TopLeft="136,93.6" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="212.5,56.3333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32,37.2666666666667"
+              Start="0,0"
+              End="32,29.7666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.6333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.6333333333333"
+                    Point2="0,18.6333333333333"
+                    Point3="4,18.6333333333333" />
+                  <mssgle:LineSegment
+                    End="28,18.6333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28,18.6333333333333"
+                    Point2="32,18.6333333333333"
+                    Point3="32,22.6333333333333" />
+                  <mssgle:LineSegment
+                    End="32,29.7666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_Load_Fact_BookSales">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="186,42"
+          Id="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK"
+          TopLeft="269,248" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK"
+          TopLeft="300,399.444444444444" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales"
+          TopLeft="380,561.777777777778" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK"
+          TopLeft="297.888888888889,333.666666666667" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK"
+          TopLeft="284,178" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales"
+          TopLeft="272,41" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\DFT_Load_Fact_BookSales\DER_Cast_Dates_History"
+          TopLeft="289,104" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK"
+          TopLeft="349.444444444444,482.555555555556" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output1]"
+          TopLeft="362,290">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.3888888888889,43.6666666666666"
+              Start="0,0"
+              End="18.3888888888889,36.1666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8333333333333"
+                    Point2="0,21.8333333333333"
+                    Point3="4,21.8333333333333" />
+                  <mssgle:LineSegment
+                    End="14.3888888888889,21.8333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.3888888888889,21.8333333333333"
+                    Point2="18.3888888888889,21.8333333333333"
+                    Point3="18.3888888888889,25.8333333333333" />
+                  <mssgle:LineSegment
+                    End="18.3888888888889,36.1666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-38.9969422743056,26.8333333333333,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output]"
+          TopLeft="363.75,220">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,4.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_BookSales.Paths[Derived Column Output]"
+          TopLeft="387,146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.5,32"
+              Start="0,0"
+              End="-21.5,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="-4,16" />
+                  <mssgle:LineSegment
+                    End="-17.5,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.5,16"
+                    Point2="-21.5,16"
+                    Point3="-21.5,20" />
+                  <mssgle:LineSegment
+                    End="-21.5,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_BookSales.Paths[OLE DB Source Output]"
+          TopLeft="449,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-62,42"
+              Start="0,0"
+              End="-62,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-58,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-58,0"
+                    Point2="-62,0"
+                    Point3="-62,4" />
+                  <mssgle:LineSegment
+                    End="-62,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output4]"
+          TopLeft="438.944444444444,524.555555555556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32.5555555555555,37.2222222222223"
+              Start="0,0"
+              End="32.5555555555555,29.7222222222223">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.6111111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.6111111111111"
+                    Point2="0,18.6111111111111"
+                    Point3="4,18.6111111111111" />
+                  <mssgle:LineSegment
+                    End="28.5555555555555,18.6111111111111" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.5555555555555,18.6111111111111"
+                    Point2="32.5555555555555,18.6111111111111"
+                    Point3="32.5555555555555,22.6111111111111" />
+                  <mssgle:LineSegment
+                    End="32.5555555555555,29.7222222222223" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-31.9136089409722,23.6111111111111,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output3]"
+          TopLeft="411.5,441.444444444444">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27.4444444444445,41.1111111111111"
+              Start="0,0"
+              End="27.4444444444445,33.6111111111111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5555555555555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5555555555555"
+                    Point2="0,20.5555555555555"
+                    Point3="4,20.5555555555555" />
+                  <mssgle:LineSegment
+                    End="23.4444444444445,20.5555555555555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.4444444444445,20.5555555555555"
+                    Point2="27.4444444444445,20.5555555555555"
+                    Point3="27.4444444444445,24.5555555555555" />
+                  <mssgle:LineSegment
+                    End="27.4444444444445,33.6111111111111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.4691644965278,25.5555555555555,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_BookSales.Paths[Lookup Match Output2]"
+          TopLeft="380.388888888889,375.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.1111111111111,23.7777777777778"
+              Start="0,0"
+              End="31.1111111111111,16.2777777777778">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.88888888888891" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.88888888888891"
+                    Point2="0,11.8888888888889"
+                    Point3="4,11.8888888888889" />
+                  <mssgle:LineSegment
+                    End="27.1111111111111,11.8888888888889" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.1111111111111,11.8888888888889"
+                    Point2="31.1111111111111,11.8888888888889"
+                    Point3="31.1111111111111,15.8888888888889" />
+                  <mssgle:LineSegment
+                    End="31.1111111111111,16.2777777777778" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-32.6358311631944,16.8888888888889,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_BookSales\LKP_Get_customer_SK">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_BookSales\LKP_Get_shipping_method_SK">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_BookSales\DEST_Fact_BookSales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_BookSales\LKP_Get_book_SK">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_BookSales\LKP_Get_date_SK">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_BookSales\SRC_Fact_BookSales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_BookSales\LKP_Get_address_SK">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT_Load_Fact_OrderHistory">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="201,42"
+          Id="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK"
+          TopLeft="309,413" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory"
+          TopLeft="347,75" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory"
+          TopLeft="339,492" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK"
+          TopLeft="319,337" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK"
+          TopLeft="330,242" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\DFT_Load_Fact_OrderHistory\DER_Cast_Dates_History"
+          TopLeft="337,145" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_OrderHistory.Paths[Lookup Match Output2]"
+          TopLeft="409.5,455">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27,37"
+              Start="0,0"
+              End="27,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5"
+                    Point2="0,18.5"
+                    Point3="4,18.5" />
+                  <mssgle:LineSegment
+                    End="23,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23,18.5"
+                    Point2="27,18.5"
+                    Point3="27,22.5" />
+                  <mssgle:LineSegment
+                    End="27,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.69138671875,23.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_OrderHistory.Paths[Lookup Match Output1]"
+          TopLeft="410.75,379">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,7.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_OrderHistory.Paths[Lookup Match Output]"
+          TopLeft="428.5,284">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.5,53"
+              Start="0,0"
+              End="-16.5,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.5"
+                    Point2="0,26.5"
+                    Point3="-4,26.5" />
+                  <mssgle:LineSegment
+                    End="-12.5,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.5,26.5"
+                    Point2="-16.5,26.5"
+                    Point3="-16.5,30.5" />
+                  <mssgle:LineSegment
+                    End="-16.5,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-56.44138671875,31.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_OrderHistory.Paths[Derived Column Output]"
+          TopLeft="431.75,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_OrderHistory.Paths[OLE DB Source Output]"
+          TopLeft="438.25,117">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_OrderHistory\LKP_Get_order_status_SK">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_OrderHistory\SRC_Fact_OrderHistory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_OrderHistory\DEST_Fact_OrderHistory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_OrderHistory\LKP_Get_customer_SK">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_OrderHistory\LKP_Get_status_date_SK">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

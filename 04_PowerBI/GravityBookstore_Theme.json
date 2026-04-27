@@ -1,0 +1,185 @@
+{
+  "name": "Gravity Bookstore Theme",
+  "dataColors": [
+    "#185FA5",
+    "#5DCAA5",
+    "#EF9F27",
+    "#D85A30",
+    "#534AB7",
+    "#E24B4A",
+    "#1D9E75",
+    "#BA7517"
+  ],
+  "background": "#F0F4F9",
+  "foreground": "#185FA5",
+  "tableAccent": "#185FA5",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "fontFamily": [{ "value": "Segoe UI" }],
+        "fontSize": [{ "value": 11 }],
+        "background": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#FFFFFF" } },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#D0E3F5" } },
+            "radius": 8
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontSize": 12,
+            "fontFamily": "Segoe UI",
+            "fontBold": true,
+            "fontColor": { "solid": { "color": "#185FA5" } }
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "calloutValue": [
+          {
+            "fontSize": 28,
+            "fontFamily": "Segoe UI",
+            "fontBold": true,
+            "labelColor": { "solid": { "color": "#185FA5" } }
+          }
+        ],
+        "label": [
+          {
+            "show": true,
+            "fontSize": 11,
+            "fontFamily": "Segoe UI",
+            "color": { "solid": { "color": "#666666" } }
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#F5F8FC" } },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#D0E3F5" } },
+            "radius": 8
+          }
+        ]
+      }
+    },
+    "barChart": {
+      "*": {
+        "dataPoint": [
+          {
+            "defaultColor": { "solid": { "color": "#185FA5" } }
+          }
+        ],
+        "categoryAxis": [
+          {
+            "fontSize": 11,
+            "fontFamily": "Segoe UI",
+            "labelColor": { "solid": { "color": "#555555" } }
+          }
+        ],
+        "valueAxis": [
+          {
+            "fontSize": 11,
+            "labelColor": { "solid": { "color": "#555555" } },
+            "gridlineColor": { "solid": { "color": "#EEEEEE" } }
+          }
+        ]
+      }
+    },
+    "columnChart": {
+      "*": {
+        "dataPoint": [
+          {
+            "defaultColor": { "solid": { "color": "#185FA5" } }
+          }
+        ],
+        "categoryAxis": [
+          {
+            "fontSize": 11,
+            "fontFamily": "Segoe UI",
+            "labelColor": { "solid": { "color": "#555555" } }
+          }
+        ],
+        "valueAxis": [
+          {
+            "fontSize": 11,
+            "gridlineColor": { "solid": { "color": "#EEEEEE" } }
+          }
+        ]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "dataPoint": [
+          {
+            "defaultColor": { "solid": { "color": "#185FA5" } }
+          }
+        ],
+        "valueAxis": [
+          {
+            "gridlineColor": { "solid": { "color": "#EEEEEE" } }
+          }
+        ]
+      }
+    },
+    "donutChart": {
+      "*": {
+        "legend": [
+          {
+            "fontSize": 11,
+            "fontFamily": "Segoe UI",
+            "labelColor": { "solid": { "color": "#555555" } }
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "data": [
+          {
+            "fontColor": { "solid": { "color": "#185FA5" } },
+            "fontSize": 11,
+            "fontFamily": "Segoe UI"
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#F5F8FC" } }
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#D0E3F5" } },
+            "radius": 8
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": { "solid": { "color": "#F0F4F9" } },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,280 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="5c886179-0f57-40f3-bb34-d141e5bc8058" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Book</ID>
+  <Name>Dim Book</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-999" scrolltop="-4048" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="5900" y="13097" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_Book" left="20" top="0" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3863" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000170f000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Dim_Book" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-999</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-4048</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="d170bf37-dc58-43ae-839f-7d64f2e773d5">
+    <DataSourceViewID>Gravity Bookstore DWH</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="b79d1f05-864f-4d7c-b01d-501f6dc5cfe6">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="ed925be1-baeb-4075-9508-45bdd08e8a85">
+      <ID>Book SK</ID>
+      <Name>Book SK</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="958d857b-5d3c-406c-a870-7086bf4cdbd3">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bae2462d-8542-479e-b311-19f11e1c44ac">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>book_SK</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="ed540391-9cad-4f00-9dce-6341c60559fd">
+          <AttributeID>Source System Code</AttributeID>
+          <Name>Source System Code</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7454afa8-c996-4387-a745-dd9cc0753f8f">
+          <AttributeID>Title</AttributeID>
+          <Name>Title</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="afd54b40-958a-4d18-9bd0-71e4c938ecac">
+          <AttributeID>Isbn13</AttributeID>
+          <Name>Isbn13</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9f05e1a5-ba0f-4f0c-a80f-0b2827dac56e">
+          <AttributeID>Num Pages</AttributeID>
+          <Name>Num Pages</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="ff5493a0-5b13-4c69-b729-d21429bbc435">
+          <AttributeID>Publication Date</AttributeID>
+          <Name>Publication Date</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="10117db4-3f5f-44c9-8cb0-0419570d44ef">
+          <AttributeID>Publication Year</AttributeID>
+          <Name>Publication Year</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="431c3a3b-dd89-4734-bc2d-9e4907d92fe5">
+          <AttributeID>Language Code</AttributeID>
+          <Name>Language Code</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3a9ed3cb-1d1e-48f5-9bac-9a2a549d88da">
+          <AttributeID>Language Name</AttributeID>
+          <Name>Language Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="529b8328-0b3e-43f5-a0ec-e27947b1420b">
+          <AttributeID>Publisher Name</AttributeID>
+          <Name>Publisher Name</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c3ad849a-bc9d-4100-ae11-1fe9a1bae519">
+      <ID>Source System Code</ID>
+      <Name>Source System Code</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="49e6cbaf-d1f9-4c18-bddc-3e3fd9b4d5d9">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1c44d8b9-4a52-408f-a1dc-c85d1b46b6aa">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>source_system_code</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b155d62e-ae80-478c-88bc-7e5847e5afb7">
+      <ID>Title</ID>
+      <Name>Title</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0715872a-9310-4d5b-b006-812699313d2d">
+          <DataType>WChar</DataType>
+          <DataSize>400</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e9ebb136-f43b-42d8-8f22-25fee6081781">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>title</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d3697a02-e858-4a17-889c-c541607957d3">
+      <ID>Isbn13</ID>
+      <Name>Isbn13</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b34ad021-a6c6-4264-95ad-ad36d52bbb94">
+          <DataType>WChar</DataType>
+          <DataSize>20</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ff516a16-b1da-4a0e-b68c-49ecbc73260a">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>isbn13</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="66a55020-83f9-4091-94a2-f04e9075874c">
+      <ID>Num Pages</ID>
+      <Name>Num Pages</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a2363fc6-aef5-4a21-b472-abb2fa86c0ba">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="167919eb-98dd-475a-a7df-4f5bb88d620e">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>num_pages</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b19bcf5d-552e-421d-91a9-57287a7f1ded">
+      <ID>Publication Date</ID>
+      <Name>Publication Date</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8359a251-d2e5-4045-bade-df567bead4f2">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8104f7d4-47ca-4e84-aa9e-9cc3c65f4710">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>publication_date</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e4258e75-4fda-4ecc-aadd-c6da7bcc433b">
+      <ID>Publication Year</ID>
+      <Name>Publication Year</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="56454c18-5905-49a5-83d3-766e3070ddc1">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="08b5c60a-be73-4d26-a072-879d9828149a">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>publication_year</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d662cdf0-40e2-400a-931f-41692e32b802">
+      <ID>Language Code</ID>
+      <Name>Language Code</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a87f8008-e956-4e18-b9b0-caafe83119de">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="850bada4-d441-44d8-9a93-57672846e85d">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>language_code</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ba398d24-3a28-4878-aa7c-6882f4781658">
+      <ID>Language Name</ID>
+      <Name>Language Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="438ef9f2-4231-498e-900a-d057d76c9036">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="21be52a4-de01-47d6-b16b-86ad829d85f1">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>language_name</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2793b436-f89f-4f51-9fc5-ec8f41f23442">
+      <ID>Publisher Name</ID>
+      <Name>Publisher Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bd78a3ee-a30d-4813-abcf-d9f51b226b7e">
+          <DataType>WChar</DataType>
+          <DataSize>400</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0bdffb83-cbe6-4df1-8ed7-62eb6e0e44ab">
+            <TableID>dbo_Dim_Book</TableID>
+            <ColumnID>publisher_name</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

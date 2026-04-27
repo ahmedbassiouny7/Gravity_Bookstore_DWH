@@ -1,0 +1,249 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/17/2026 10:22:34 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="A-BSY"
+  DTS:CreatorName="A-BSY\A-bsy"
+  DTS:DTSID="{A7AF9C18-8F58-4AE3-86EC-29B1FCCF2482}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="01_Staging_Load"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{35CBA8FB-EFA6-4C07-9B20-CAF02BEA8C62}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Full_Load_Staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{05853341-07F0-4E10-A39F-B6ABB557822D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Full_Load_Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4BEB09F6-A322-4CD0-AEBE-2FED5EC9BB59}"
+          SQLTask:SqlStatementSource="-- INSERT ALL&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_book&#xA;SELECT book_id, title, isbn13, language_id,&#xA;       num_pages, publication_date, publisher_id, GETDATE()&#xA;FROM gravity_books.dbo.book;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_author&#xA;SELECT author_id, author_name, GETDATE()&#xA;FROM gravity_books.dbo.author;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_book_author&#xA;SELECT book_id, author_id, GETDATE()&#xA;FROM gravity_books.dbo.book_author;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_book_language&#xA;SELECT language_id, language_code, language_name, GETDATE()&#xA;FROM gravity_books.dbo.book_language;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_publisher&#xA;SELECT publisher_id, publisher_name, GETDATE()&#xA;FROM gravity_books.dbo.publisher;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_customer&#xA;SELECT customer_id, first_name, last_name, email, GETDATE()&#xA;FROM gravity_books.dbo.customer;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_address&#xA;SELECT address_id, street_number, street_name, city, country_id, GETDATE()&#xA;FROM gravity_books.dbo.address;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_country&#xA;SELECT country_id, country_name, GETDATE()&#xA;FROM gravity_books.dbo.country;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_customer_address&#xA;SELECT customer_id, address_id, status_id, GETDATE()&#xA;FROM gravity_books.dbo.customer_address;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_address_status&#xA;SELECT status_id, address_status, GETDATE()&#xA;FROM gravity_books.dbo.address_status;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_shipping_method&#xA;SELECT method_id, method_name, cost, GETDATE()&#xA;FROM gravity_books.dbo.shipping_method;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_order_status&#xA;SELECT status_id, status_value, GETDATE()&#xA;FROM gravity_books.dbo.order_status;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_cust_order&#xA;SELECT order_id, order_date, customer_id,&#xA;       shipping_method_id, dest_address_id, GETDATE()&#xA;FROM gravity_books.dbo.cust_order;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_order_line&#xA;SELECT line_id, order_id, book_id, price, GETDATE()&#xA;FROM gravity_books.dbo.order_line;&#xA;&#xA;INSERT INTO GravityBookstore_Staging.dbo.stg_order_history&#xA;SELECT history_id, order_id, status_id, status_date, GETDATE()&#xA;FROM gravity_books.dbo.order_history;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Log_Success"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{839E28A5-24BA-469A-B4E5-084F61F64847}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Log_Success"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4BEB09F6-A322-4CD0-AEBE-2FED5EC9BB59}"
+          SQLTask:SqlStatementSource="INSERT INTO GravityBookstore_Staging.dbo.etl_error_log&#xA;    (package_name, error_message, error_time)&#xA;VALUES&#xA;    ('01_Staging_Load', 'Staging load completed successfully', GETDATE());" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Verify_Staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{177F8E60-D1DC-4456-AF4A-8D1E86A4EC79}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Verify_Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4BEB09F6-A322-4CD0-AEBE-2FED5EC9BB59}"
+          SQLTask:SqlStatementSource="IF EXISTS (&#xA;    SELECT 1 WHERE&#xA;    (SELECT COUNT(*) FROM gravity_books.dbo.book) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_book)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.author) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_author)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.book_author) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_book_author)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.book_language) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_book_language)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.publisher) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_publisher)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.customer) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_customer)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.address) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_address)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.country) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_country)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.customer_address) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_customer_address)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.address_status) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_address_status)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.shipping_method) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_shipping_method)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.order_status) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_order_status)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.cust_order) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_cust_order)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.order_line) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_order_line)&#xA;&#xA;    OR (SELECT COUNT(*) FROM gravity_books.dbo.order_history) != &#xA;    (SELECT COUNT(*) FROM GravityBookstore_Staging.dbo.stg_order_history)&#xA;)&#xA;BEGIN&#xA;    RAISERROR('Staging row count mismatch detected!', 16, 1);&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2E346D68-CD29-42CF-A960-962BB31E7ED3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4BEB09F6-A322-4CD0-AEBE-2FED5EC9BB59}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE stg_book;&#xA;TRUNCATE TABLE stg_author;&#xA;TRUNCATE TABLE stg_book_author;&#xA;TRUNCATE TABLE stg_book_language;&#xA;TRUNCATE TABLE stg_publisher;&#xA;TRUNCATE TABLE stg_customer;&#xA;TRUNCATE TABLE stg_address;&#xA;TRUNCATE TABLE stg_country;&#xA;TRUNCATE TABLE stg_customer_address;&#xA;TRUNCATE TABLE stg_address_status;&#xA;TRUNCATE TABLE stg_shipping_method;&#xA;TRUNCATE TABLE stg_order_status;&#xA;TRUNCATE TABLE stg_cust_order;&#xA;TRUNCATE TABLE stg_order_line;&#xA;TRUNCATE TABLE stg_order_history;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7816070E-14ED-467A-8CE4-D8349EC623EE}"
+      DTS:From="Package\Truncate Staging Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SQL_Full_Load_Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3BE00AC6-0E72-4C80-9CC0-30D54DC78848}"
+      DTS:From="Package\SQL_Full_Load_Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL_Verify_Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{CC47210B-F2D3-4265-8A7F-C4DAF9801EA6}"
+      DTS:From="Package\SQL_Verify_Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL_Log_Success" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Truncate Staging Tables"
+          TopLeft="174,20" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\SQL_Full_Load_Staging"
+          TopLeft="210.5,131.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="270.5,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="35,69.5"
+              Start="0,0"
+              End="35,62">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.75"
+                    Point2="0,34.75"
+                    Point3="4,34.75" />
+                  <mssgle:LineSegment
+                    End="31,34.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31,34.75"
+                    Point2="35,34.75"
+                    Point3="35,38.75" />
+                  <mssgle:LineSegment
+                    End="35,62" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\SQL_Verify_Staging"
+          TopLeft="209.5,212.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="305.5,173.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10,39"
+              Start="0,0"
+              End="-10,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5"
+                    Point2="0,19.5"
+                    Point3="-4,19.5" />
+                  <mssgle:LineSegment
+                    End="-6,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6,19.5"
+                    Point2="-10,19.5"
+                    Point3="-10,23.5" />
+                  <mssgle:LineSegment
+                    End="-10,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\SQL_Log_Success"
+          TopLeft="245,293" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="295.5,254.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31,38.5"
+              Start="0,0"
+              End="31,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.25"
+                    Point2="0,19.25"
+                    Point3="4,19.25" />
+                  <mssgle:LineSegment
+                    End="27,19.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27,19.25"
+                    Point2="31,19.25"
+                    Point3="31,23.25" />
+                  <mssgle:LineSegment
+                    End="31,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
