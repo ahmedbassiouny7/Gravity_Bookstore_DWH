@@ -45,7 +45,7 @@
 |---|---|
 | Source System | `gravity_books` — SQL Server OLTP database |
 | Staging Layer | `GravityBookstore_Staging` — full load, truncate + insert |
-| Data Warehouse | `GravityBookstore_DWH` — star schema with SCD support |
+| Data Warehouse | `GravityBookstore_DWH` — snowflake schema with SCD support |
 | ETL Tool | SSIS (SQL Server Integration Services) |
 | Analytical Layer | SSAS Multidimensional Cube |
 | Reporting Layer | Power BI Desktop (live connection to SSAS) |
@@ -189,7 +189,7 @@ retail-analytics-platform/
 │
 ├── 📁 06_Documentation/
 │   ├── Architecture_Diagram.png        # Full architecture diagram
-│   ├── Dimensional_Model_ERD.png       # Star schema ERD
+│   ├── Dimensional_Model_ERD.png       # snowflake schema ERD
 │   └── Data_Dictionary.md              # Full data dictionary
 │
 ├── 📁 07_Screenshots/
